@@ -1,0 +1,14 @@
+fastapi
+uvicorn[standard]
+pydantic-settings
+sqlalchemy
+python-jose[cryptography]
+pwdlib[argon2]
+python-multipart
+email-validator
+PyMuPDF
+langchain-text-splitters
+httpx
+psycopg[binary]
+pgvector
+alembic

@@ -1,0 +1,28 @@
+# Environment / secrets
+.env
+.env.*
+!.env.example
+
+# Python
+__pycache__/
+*.py[cod]
+*.db
+.venv/
+venv/
+
+# Uploaded files
+Backend/uploads/
+
+# Node
+node_modules/
+frontend/dist/
+
+# Build / tooling
+.pytest_cache/
+.mypy_cache/
+.vscode/
+.idea/
+
+# OS
+.DS_Store
+Thumbs.db

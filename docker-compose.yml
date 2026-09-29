@@ -1,0 +1,41 @@
+services:
+  db:
+    image: pgvector/pgvector:pg17
+    container_name: pdf-assistant-db
+    environment:
+      POSTGRES_DB: pdf_assistant
+      POSTGRES_USER: pdfuser
+      POSTGRES_PASSWORD: pdfpassword
+    volumes:
+      - pdf_assistant_data:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
+
+  backend:
+    build:
+      context: ./Backend
+    container_name: pdf-assistant-backend
+    environment:
+      DATABASE_URL: postgresql+psycopg://pdfuser:pdfpassword@db:5432/pdf_assistant
+      SECRET_KEY: ${SECRET_KEY}
+      OLLAMA_BASE_URL: http://host.docker.internal:11434
+    ports:
+      - "8000:8000"
+    depends_on:
+      - db
+
+  frontend:
+    build:
+      context: ./frontend
+      args:
+        VITE_API_BASE_URL: http://localhost:8000
+    container_name: pdf-assistant-frontend
+    ports:
+      - "5173:80"
+    depends_on:
+      - backend
+
+volumes:
+  pdf_assistant_data:
+    external: true
+    name: 5a91a568ac8fc772d26b00eddfcc4479384d61a753bbef51c96906763808708e
