@@ -31,13 +31,13 @@ The application combines a React + TypeScript frontend, FastAPI backend, Postgre
 ## Screenshots
 
 ### Dashboard
-![Dashboard](screenshots/dashboard.png)
+![Dashboard](./frontend/screenshots/dashboard.png)
 
 ### RAG Response
-![RAG Response](screenshots/rag-response.png)
+![RAG Response](./frontend/screenshots/rag-response.png)
 
 ### Conversation History
-![Conversation History](screenshots/conversation-history.png)
+![Conversation History](./frontend/screenshots/conversation-history.png)
 
 ## Architecture
 
