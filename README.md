@@ -28,6 +28,17 @@ The application combines a React + TypeScript frontend, FastAPI backend, Postgre
 * Dockerized frontend, backend and PostgreSQL services
 * Local LLM and embedding inference through Ollama
 
+## Screenshots
+
+### Dashboard
+![Dashboard](screenshots/dashboard.png)
+
+### RAG Response
+![RAG Response](screenshots/rag-response.png)
+
+### Conversation History
+![Conversation History](screenshots/conversation-history.png)
+
 ## Architecture
 
 ```text
