@@ -14,6 +14,10 @@ FRONTEND_URL = os.getenv(
     "http://localhost:5173"
 )
 
+@app.get("/health")
+def health_check():
+    return {"status": "healthy"}
+
 app.add_middleware(
     CORSMiddleware,
     allow_origins=[FRONTEND_URL],
