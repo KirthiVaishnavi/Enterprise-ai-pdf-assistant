@@ -18,14 +18,23 @@ def upload_documents(
    current_user:User=Depends(get_current_user),
    db: Session=Depends(get_db) 
 ):
-        
+            
     file_bytes=validate_file(file)
     
     pages=extract_pages(file_bytes)
+    
     chunks=chunk_pages(pages)
     
     texts=[chunk["text"] for chunk in chunks]
+    
     embeddings=generate_embeddings(texts)
+    
+    if len(embeddings) != len(chunks):
+        raise HTTPException(
+            status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,
+            detail="Embedding count does not match chunk count"
+        )
+    
     for chunk, embedding in zip(chunks,embeddings):
         chunk["embedding"]=embedding
     
