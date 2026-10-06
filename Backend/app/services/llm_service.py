@@ -128,7 +128,17 @@ def generate_gemini_answer(prompt: str) -> str:
 
         return answer
 
-    except (httpx.HTTPError, ValueError) as e:
+    except httpx.HTTPStatusError as e:
+        print(
+            f"Gemini API error: status={e.response.status_code}, "
+            f"body={e.response.text}"
+        )
+        raise LLMServiceError(
+            "Gemini LLM service unavailable"
+        ) from e
+    
+    except (httpx.RequestError, ValueError) as e:
+        print(f"Gemini API request/parsing error: {e}")
         raise LLMServiceError(
             "Gemini LLM service unavailable"
         ) from e
